@@ -2,7 +2,7 @@
   <form :class="['frappe-form-layout', { 'was-validated': invalid }]">
     <div
       class="form-row"
-      v-if="layoutConfig && showSection(i)"
+      :v-if="layoutConfig && showSection(i)"
       v-for="(section, i) in layoutConfig.sections"
       :key="i"
     >
@@ -10,7 +10,7 @@
         <frappe-control
           ref="frappe-control"
           v-for="(fieldname, k) in column.fields"
-          v-if="shouldRenderField(fieldname)"
+          :v-if="shouldRenderField(fieldname)"
           :key="getDocField(fieldname).label"
           :docfield="getDocField(fieldname)"
           :value="$data[fieldname]"
