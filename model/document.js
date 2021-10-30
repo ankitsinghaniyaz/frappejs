@@ -609,6 +609,9 @@ module.exports = class BaseDocument extends Observable {
   }
 
   async delete() {
+    if (this.submitted) {
+      await this.revert();
+    }
     await this.trigger('beforeDelete');
     await frappe.db.delete(this.doctype, this.name);
     await this.trigger('afterDelete');
